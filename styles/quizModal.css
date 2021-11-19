@@ -1,0 +1,25 @@
+.category-quiz-wrapper{
+    position: absolute;
+    display: flex;
+    justify-content: center;
+    align-items:center;
+    top:0;
+    left:0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.7);
+    overflow-y: hidden;
+}
+.category-quiz-window{
+    width: 80%;
+    height: 100%;
+    background-color: blanchedalmond;
+    margin-top: 100%;
+    animation: showQuizModal .3s forwards;
+}
+
+@keyframes showQuizModal {
+    to{
+        margin-top: 0;
+    }
+}

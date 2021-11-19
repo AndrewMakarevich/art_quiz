@@ -1,0 +1,47 @@
+.current-section__wrapper{
+    color: white;
+}
+.route-component{
+    width: 100%;
+    height: auto;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(195px, 1fr));
+    grid-auto-rows: min-content;
+    grid-gap: 25px 25px;
+}
+.category-wrapper{
+    position: relative;
+    width:100%;
+    height: 100%;
+    animation: surfacing .3s forwards;
+}
+.category-picture{
+    width: 100%;
+    object-fit: cover;   
+    border-radius: 25px;
+}
+.category-header{
+    color:white;
+    font-family: Gilroy;
+}
+.open-category-quiz-btn{
+    position: absolute;
+    top:0;
+    left:0;
+    border-radius:25px;
+    width:100%;
+    height: 100%;
+    background-color: transparent;
+    border:none;
+}
+.unvisited-category{
+    filter: grayscale(1);
+}
+@keyframes surfacing {
+    from{
+        transform: scale(0);
+    }
+    to{
+        transform: scale(1);
+    }
+}

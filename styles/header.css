@@ -1,0 +1,81 @@
+.settings-btn{
+    width:30px;
+    height: 30px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border:none;
+    background-color:transparent;
+    cursor: pointer;
+}
+.settings-btn .settingsIcon path{
+    transition: fill .3s;
+}
+.settings-btn:hover .settingsIcon path,
+.settings-btn:focus .settingsIcon path{
+    fill: var(--main-hover-color);
+}
+.settings-btn:hover,
+.settings-btn:focus{
+    animation: rotateIcon 1s;
+}
+
+.nav-bar{
+    display: flex;
+}
+
+.nav-bar__logo{
+    display: flex;
+    align-items: center;
+    position: relative;
+    font-family: Gilroy;
+    color: var(--main-font-color);
+    font-size: 30px;
+    margin-top: -7px;
+}
+.nav-bar__logo::before{
+    content: '';
+    left:-7px;
+    position: absolute;
+    width: 40px;
+    height: 40px;
+    border: 1px white solid;
+    border-radius: 50%;
+}
+.nav-bar__logo::after{
+    content: '';
+    position: absolute;
+    left:13px;
+    width: 40px;
+    height: 40px;
+    border: 1px white solid;
+    border-radius: 50%;
+}
+
+
+.nav-bar__buttons__list{
+    list-style: none;
+    display: flex;
+}
+.nav-bar__buttons__list li{
+    margin-left: 50px;
+}
+
+.route-btn{
+    border: none;
+    background-color:transparent;
+    color:var(--main-font-color);
+    font-family: Gilroy;
+    font-size: 20px;
+    transition: color .3s;
+    cursor: pointer;
+}
+.active-route-btn{
+    color: var(--hover-font-color);
+}
+@keyframes rotateIcon {
+    100%{
+        transform-origin: center,center;
+        transform: rotate(360deg);
+    }
+}
