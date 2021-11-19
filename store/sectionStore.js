@@ -1,4 +1,4 @@
-class sectionStore {
+class SectionStore {
     constructor() {
         this._sections = [
             {
@@ -7,6 +7,9 @@ class sectionStore {
                 questions: [
                     {
                         text: "Who is the author of this picture?",
+                        amountOfAnswerOptions: 4,
+                        answerOptionsType: 'text',
+                        answerOptionsProp: 'author',
                         amountOfPictures: 1
                     }
                 ]
@@ -16,12 +19,19 @@ class sectionStore {
                 section: 'pictures',
                 questions: [
                     {
-                        text: "Which picture was written by <authorName>?",
-                        amountOfPictures: 4
+                        text: "Which picture was written by <author>?",
+                        amountOfAnswerOptions: 4,
+                        answerOptionsType: 'picture',
+                        answerOptionsProp: 'imageNum',
+                        amountOfPictures: 0
                     }
                 ]
             }
         ];
     }
+    getSections() {
+        return this._sections;
+    }
 
 }
+export default new SectionStore();
