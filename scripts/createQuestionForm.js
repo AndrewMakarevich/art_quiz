@@ -1,6 +1,21 @@
 /*jshint esversion:8*/
 import { getTinyArtsFromRepos } from './getTinyArtsFromRepos.js';
-export function createQuestionForm(objsToCreateQuestion, correctAnswerObj, questionObj) {
+import { checkAnswer } from './checkAnswer.js';
+import { GlobalVariables } from '../store/globalVariables.js';
+export function createQuestionForm(objsToCreateQuestion, correctAnswerObj, questionObj, categoryName) {
+
+    const storage = JSON.parse(localStorage.getItem('categoryQuizStorage'));
+    const currentSection = storage[window.location.hash.split('#/')[1]];
+    const currentCategory = currentSection[categoryName];
+    const categoryQuestionsResult = currentCategory.questions;
+    if (categoryQuestionsResult.length === 10) {
+        return document.querySelector('.question-form').innerHTML = `
+        <h5>You answered all the questions.</h5>`;
+    }
+
+    if (document.querySelector('.question-form')) {
+        document.querySelector('.question-form').innerHTML = '';
+    }
 
     const question = document.createElement('h5');
     question.classList.add('question-text');
@@ -41,7 +56,11 @@ export function createQuestionForm(objsToCreateQuestion, correctAnswerObj, quest
             const answerButton = document.createElement('button');
             answerButton.classList.add('answer-button');
             answerButton.innerText = possibleAnswerObj[questionObj.answerOptionsProp];
-            console.log(answerButton);
+            answerButton.addEventListener('click', () => {
+                if (!GlobalVariables.correctAnswerModalExistence) {
+                    checkAnswer(answerButton, correctAnswerObj, questionObj, categoryName);
+                }
+            });
             return answerButton;
         } else if (questionObj.answerOptionsType === 'picture') {
 
@@ -54,6 +73,12 @@ export function createQuestionForm(objsToCreateQuestion, correctAnswerObj, quest
             const answerImgButton = document.createElement('button');
             answerImgButton.classList.add('answer-button');
             answerImgButton.classList.add('image-btn');
+
+            answerImgButton.addEventListener('click', () => {
+                if (!GlobalVariables.correctAnswerModalExistence) {
+                    checkAnswer(answerButton, correctAnswerObj, questionObj, categoryName);
+                }
+            });
 
             const imgUrl = await getTinyArtsFromRepos('AndrewMakarevich', 'image-data', 'img', 'master', possibleAnswerObj.imageNum);
             answerImg.src = imgUrl;
@@ -70,6 +95,7 @@ export function createQuestionForm(objsToCreateQuestion, correctAnswerObj, quest
     objsToCreateQuestion.forEach((obj) => {
         createAnswerOption(obj).then(answerOption => answerOptionsWrapper.append(answerOption));
     });
+
 
     const questionForm = document.querySelector('.question-form');
     questionForm.append(question);

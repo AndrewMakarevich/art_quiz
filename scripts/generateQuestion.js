@@ -7,7 +7,7 @@ import SectionStore from "../store/sectionStore.js";
 import { createQuestionForm } from "./createQuestionForm.js";
 
 
-export async function generateQuestion(authorName, repName, path, branchName, fileName) {
+export async function generateQuestion(authorName, repName, path, branchName, fileName, categoryName) {
 
     const host = axios.create({
         baseURL: 'https://api.github.com'
@@ -67,7 +67,7 @@ export async function generateQuestion(authorName, repName, path, branchName, fi
     console.log(`Correct answer:`);
     console.log(correctAnswer);
 
-    createQuestionForm(objsToCreateQuestion, correctAnswer, questionType);
+    createQuestionForm(objsToCreateQuestion, correctAnswer, questionType, categoryName);
 
     // Костыльная попытка преобразования в обьект полученного содержимого файла images.js. Попытка неуспешна по причине вложенных кавычек, которые я не смог выудить с помощью регулярных выражений, 69 обьект, если быть точным, стал причиной провала.
 

@@ -16,7 +16,9 @@ html::-webkit-scrollbar-thumb{
 :root{
     --main-hover-color: #FFBCA2;
     --sec-hover-color:rgb(26, 25, 25);
+    --img-btn-hover-color: rgb(248, 221, 185, 0.3);
     --main-font-color:white;
+    --sec-font-color: black;
     --hover-font-color:#FFBCA2;
     --sec-hover-font-color:rgb(26, 25, 25);
 }

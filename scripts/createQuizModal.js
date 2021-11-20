@@ -56,7 +56,10 @@ export function createQuizModal(category, categoryPicture) {
         categoryResStorage[window.location.hash.split('#/')[1]] = {};
         currentType = categoryResStorage[window.location.hash.split('#/')[1]];
     }
-    currentType[category.categoryName] = { questions: [] };
+    if (!currentType[category.categoryName]) {
+        currentType[category.categoryName] = { questions: [] };
+    }
+
 
     categoryPicture.classList.remove('unvisited-category');
 
@@ -64,5 +67,5 @@ export function createQuizModal(category, categoryPicture) {
     console.log(JSON.parse(localStorage.getItem('categoryQuizStorage')));
 
 
-    generateQuestion('AndrewMakarevich', 'image-data', '.', 'master', 'images.json');
+    generateQuestion('AndrewMakarevich', 'image-data', '.', 'master', 'images.json', category.categoryName);
 }
