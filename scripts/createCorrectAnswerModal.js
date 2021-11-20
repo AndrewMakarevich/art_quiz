@@ -1,6 +1,6 @@
 import { getTinyArtsFromRepos } from './getTinyArtsFromRepos.js';
 import { generateQuestion } from './generateQuestion.js';
-import { GlobalVariables } from '../store/globalVariables.js';
+import GlobalVariables from '../store/globalVariables.js';
 
 export async function createCorrectAnswerModal(correctAnswerObj, categoryName, answerResult) {
 

@@ -5,9 +5,10 @@ import { getRndNumber } from "./rndBackground.js";
 import ArtDataStore from '../store/artDataStore.js';
 import SectionStore from "../store/sectionStore.js";
 import { createQuestionForm } from "./createQuestionForm.js";
+import GlobalVariables from "../store/globalVariables.js";
 
 
-export async function generateQuestion(authorName, repName, path, branchName, fileName, categoryName) {
+export async function generateQuestion(authorName, repName, path, branchName, fileName) {
 
     const host = axios.create({
         baseURL: 'https://api.github.com'
@@ -67,7 +68,7 @@ export async function generateQuestion(authorName, repName, path, branchName, fi
     console.log(`Correct answer:`);
     console.log(correctAnswer);
 
-    createQuestionForm(objsToCreateQuestion, correctAnswer, questionType, categoryName);
+    createQuestionForm(objsToCreateQuestion, correctAnswer, questionType);
 
     // Костыльная попытка преобразования в обьект полученного содержимого файла images.js. Попытка неуспешна по причине вложенных кавычек, которые я не смог выудить с помощью регулярных выражений, 69 обьект, если быть точным, стал причиной провала.
 

@@ -1,5 +1,7 @@
 import { createQuizModal } from './createQuizModal.js';
 import { token } from '../store/accessToken.js';
+import { updateCategoryStatus } from './updateCategoryStatus.js';
+import GlobalVariables from '../store/globalVariables.js';
 
 export { createQuizModal } from './createQuizModal.js';
 export async function createCategory(category, authorName, repName, path, branchName) {
@@ -17,11 +19,14 @@ export async function createCategory(category, authorName, repName, path, branch
     categoryWrapper.classList.add('category-wrapper');
 
     const categoryHeaderWrapper = document.createElement('div');
-
+    categoryHeaderWrapper.classList.add('category-header-wrapper');
 
     const categoryHeader = document.createElement('h3');
     categoryHeader.classList.add('category-header');
     categoryHeader.innerText = category.categoryName;
+
+    const categoryStat = document.createElement('article');
+    categoryStat.classList.add('category-stat');
 
     const categoryPicture = document.createElement('img');
     categoryPicture.alt = `category ${category.categoryName} picture`;
@@ -29,32 +34,23 @@ export async function createCategory(category, authorName, repName, path, branch
     categoryPicture.classList.add('category-picture');
 
     categoryHeaderWrapper.append(categoryHeader);
+    categoryHeaderWrapper.append(categoryStat);
     categoryWrapper.append(categoryHeaderWrapper);
     categoryWrapper.append(categoryPicture);
 
     const categoryBtn = document.createElement('button');
     categoryBtn.classList.add('open-category-quiz-btn');
 
-    let categoryResStorage = localStorage.getItem('categoryQuizStorage');
-    if (!categoryResStorage) {
-        localStorage.setItem('categoryQuizStorage', '{}');
-    }
-    categoryResStorage = JSON.parse(localStorage.getItem('categoryQuizStorage'));
-    let currentType = categoryResStorage[window.location.hash.split('#/')[1]];
-    if (!currentType) {
-        categoryResStorage[window.location.hash.split('#/')[1]] = {};
-        currentType = categoryResStorage[window.location.hash.split('#/')[1]];
-    }
-    let currentCategory = currentType[category.categoryName];
-    if (!currentCategory) {
-        categoryPicture.classList.add('unvisited-category');
-    }
+
 
     categoryBtn.addEventListener('click', () => {
-        createQuizModal(category, categoryPicture);
+        createQuizModal(category, categoryPicture, categoryWrapper);
+        GlobalVariables.currentCategoryNode = categoryWrapper;
     });
 
     categoryWrapper.append(categoryBtn);
+
+    updateCategoryStatus(category, categoryWrapper);
 
     return categoryWrapper;
 }

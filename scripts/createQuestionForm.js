@@ -1,14 +1,16 @@
 /*jshint esversion:8*/
 import { getTinyArtsFromRepos } from './getTinyArtsFromRepos.js';
 import { checkAnswer } from './checkAnswer.js';
-import { GlobalVariables } from '../store/globalVariables.js';
-export function createQuestionForm(objsToCreateQuestion, correctAnswerObj, questionObj, categoryName) {
+import { updateCategoryStatus } from './updateCategoryStatus.js';
+import GlobalVariables from '../store/globalVariables.js';
+
+export function createQuestionForm(objsToCreateQuestion, correctAnswerObj, questionObj) {
 
     const storage = JSON.parse(localStorage.getItem('categoryQuizStorage'));
     const currentSection = storage[window.location.hash.split('#/')[1]];
-    const currentCategory = currentSection[categoryName];
+    const currentCategory = currentSection[GlobalVariables.currentCategory.categoryName];
     const categoryQuestionsResult = currentCategory.questions;
-    if (categoryQuestionsResult.length === 10) {
+    if (categoryQuestionsResult.length === GlobalVariables.currentCategory.amountOfQuestions) {
         return document.querySelector('.question-form').innerHTML = `
         <h5>You answered all the questions.</h5>`;
     }
@@ -58,7 +60,8 @@ export function createQuestionForm(objsToCreateQuestion, correctAnswerObj, quest
             answerButton.innerText = possibleAnswerObj[questionObj.answerOptionsProp];
             answerButton.addEventListener('click', () => {
                 if (!GlobalVariables.correctAnswerModalExistence) {
-                    checkAnswer(answerButton, correctAnswerObj, questionObj, categoryName);
+                    checkAnswer(answerButton, correctAnswerObj, questionObj);
+                    updateCategoryStatus();
                 }
             });
             return answerButton;
@@ -76,7 +79,8 @@ export function createQuestionForm(objsToCreateQuestion, correctAnswerObj, quest
 
             answerImgButton.addEventListener('click', () => {
                 if (!GlobalVariables.correctAnswerModalExistence) {
-                    checkAnswer(answerButton, correctAnswerObj, questionObj, categoryName);
+                    checkAnswer(answerButton, correctAnswerObj, questionObj);
+                    updateCategoryStatus();
                 }
             });
 

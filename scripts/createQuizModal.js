@@ -1,12 +1,18 @@
 /*jshint esversion:6*/
 import { generateQuestion } from "./generateQuestion.js";
-export function createQuizModal(category, categoryPicture) {
+import GlobalVariables from "../store/globalVariables.js";
+import { updateCategoryStatus } from "./updateCategoryStatus.js";
+
+export function createQuizModal(category, categoryPicture, categoryNode) {
 
     const main = document.querySelector('main');
 
     if (document.querySelector('.category-quiz-wrapper')) {
         return;
     }
+
+    // Сохранение текущей категории в глобальной переменной
+    GlobalVariables.currentCategory = category;
 
     const modalBackground = document.createElement('section');
     modalBackground.classList.add('category-quiz-wrapper');
@@ -66,6 +72,6 @@ export function createQuizModal(category, categoryPicture) {
     localStorage.setItem('categoryQuizStorage', JSON.stringify(categoryResStorage));
     console.log(JSON.parse(localStorage.getItem('categoryQuizStorage')));
 
-
-    generateQuestion('AndrewMakarevich', 'image-data', '.', 'master', 'images.json', category.categoryName);
+    updateCategoryStatus(category, categoryNode);
+    generateQuestion('AndrewMakarevich', 'image-data', '.', 'master', 'images.json');
 }
