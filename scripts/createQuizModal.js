@@ -66,9 +66,9 @@ export function createQuizModal(category, categoryPicture, categoryNode) {
         currentType[category.categoryName] = { questions: [] };
     }
 
-
-    categoryPicture.classList.remove('unvisited-category');
-
+    if (categoryPicture) {
+        categoryPicture.classList.remove('unvisited-category');
+    }
     localStorage.setItem('categoryQuizStorage', JSON.stringify(categoryResStorage));
     console.log(JSON.parse(localStorage.getItem('categoryQuizStorage')));
 

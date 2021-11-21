@@ -2,8 +2,10 @@ import GlobalVariables from "../store/globalVariables.js";
 import { createRepeatCategoryBtn } from "./createRepeatCategoryButton.js";
 
 export function updateCategoryStatus(category, categoryNode) {
+
     category = category || GlobalVariables.currentCategory;
     categoryNode = categoryNode || GlobalVariables.currentCategoryNode;
+    console.log(category);
 
     let categoryResStorage = localStorage.getItem('categoryQuizStorage');
     if (!categoryResStorage) {
@@ -21,11 +23,15 @@ export function updateCategoryStatus(category, categoryNode) {
         categoryNode.querySelector('.category-stat').innerText = '';
         if (categoryNode.querySelector('.repeat-category-btn')) {
             categoryNode.querySelector('.repeat-category-btn').remove();
+
         }
     } else {
-        categoryNode.querySelector('.category-stat').innerText = `${currentCategory.questions.length}/${category.amountOfQuestions}`;
+        const amountOfCorrectAnswers = currentCategory.questions.filter(question => question === true);
+        categoryNode.querySelector('.category-stat').innerText = `${amountOfCorrectAnswers.length}/${category.amountOfQuestions}`;
         if (currentCategory.questions.length === category.amountOfQuestions) {
-            categoryNode.append(createRepeatCategoryBtn(category, categoryNode));
+            if (!categoryNode.querySelector('.repeat-category-btn')) {
+                categoryNode.append(createRepeatCategoryBtn(category, categoryNode));
+            }
         }
     }
 };

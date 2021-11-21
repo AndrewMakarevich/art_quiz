@@ -63,8 +63,8 @@ function setCurrentSection() {
 
             main.innerHTML = routeExistence.component;
             document.querySelector(`.${baseComponentClassName}`).classList.add(routeExistence.componentClassName);
-            categoriesStore.categories.forEach(async (category) => {
-                document.querySelector(`.${routeExistence.componentClassName}`).append(await createCategory(category, 'AndrewMakarevich', 'image-data', 'img', 'master'));
+            categoriesStore.categories[window.location.hash.split('#/')[1]].forEach((category) => {
+                createCategory(category, 'AndrewMakarevich', 'image-data', 'img', 'master').then(obj => document.querySelector(`.${routeExistence.componentClassName}`).append(obj));
             });
         } else {
             window.location.hash = '/start';

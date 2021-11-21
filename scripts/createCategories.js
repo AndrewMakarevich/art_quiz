@@ -17,6 +17,7 @@ export async function createCategory(category, authorName, repName, path, branch
 
     const categoryWrapper = document.createElement('article');
     categoryWrapper.classList.add('category-wrapper');
+    categoryWrapper.id = category.id;
 
     const categoryHeaderWrapper = document.createElement('div');
     categoryHeaderWrapper.classList.add('category-header-wrapper');
@@ -33,22 +34,18 @@ export async function createCategory(category, authorName, repName, path, branch
     categoryPicture.src = data.download_url;
     categoryPicture.classList.add('category-picture');
 
-    categoryHeaderWrapper.append(categoryHeader);
-    categoryHeaderWrapper.append(categoryStat);
-    categoryWrapper.append(categoryHeaderWrapper);
-    categoryWrapper.append(categoryPicture);
-
     const categoryBtn = document.createElement('button');
     categoryBtn.classList.add('open-category-quiz-btn');
-
-
-
     categoryBtn.addEventListener('click', () => {
         createQuizModal(category, categoryPicture, categoryWrapper);
         GlobalVariables.currentCategoryNode = categoryWrapper;
     });
 
     categoryWrapper.append(categoryBtn);
+    categoryHeaderWrapper.append(categoryHeader);
+    categoryHeaderWrapper.append(categoryStat);
+    categoryWrapper.append(categoryHeaderWrapper);
+    categoryWrapper.append(categoryPicture);
 
     updateCategoryStatus(category, categoryWrapper);
 

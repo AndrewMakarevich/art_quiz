@@ -3,6 +3,7 @@ import { getTinyArtsFromRepos } from './getTinyArtsFromRepos.js';
 import { checkAnswer } from './checkAnswer.js';
 import { updateCategoryStatus } from './updateCategoryStatus.js';
 import GlobalVariables from '../store/globalVariables.js';
+import { createFinalQuizPage } from './createFinalQuizPage.js';
 
 export function createQuestionForm(objsToCreateQuestion, correctAnswerObj, questionObj) {
 
@@ -10,13 +11,15 @@ export function createQuestionForm(objsToCreateQuestion, correctAnswerObj, quest
     const currentSection = storage[window.location.hash.split('#/')[1]];
     const currentCategory = currentSection[GlobalVariables.currentCategory.categoryName];
     const categoryQuestionsResult = currentCategory.questions;
-    if (categoryQuestionsResult.length === GlobalVariables.currentCategory.amountOfQuestions) {
-        return document.querySelector('.question-form').innerHTML = `
-        <h5>You answered all the questions.</h5>`;
-    }
+
+
 
     if (document.querySelector('.question-form')) {
         document.querySelector('.question-form').innerHTML = '';
+    }
+
+    if (categoryQuestionsResult.length === GlobalVariables.currentCategory.amountOfQuestions) {
+        return document.querySelector('.question-form').append(createFinalQuizPage(categoryQuestionsResult));
     }
 
     const question = document.createElement('h5');
@@ -76,10 +79,11 @@ export function createQuestionForm(objsToCreateQuestion, correctAnswerObj, quest
             const answerImgButton = document.createElement('button');
             answerImgButton.classList.add('answer-button');
             answerImgButton.classList.add('image-btn');
+            answerImgButton.innerText = possibleAnswerObj[questionObj.answerOptionsProp];
 
             answerImgButton.addEventListener('click', () => {
                 if (!GlobalVariables.correctAnswerModalExistence) {
-                    checkAnswer(answerButton, correctAnswerObj, questionObj);
+                    checkAnswer(answerImgButton, correctAnswerObj, questionObj);
                     updateCategoryStatus();
                 }
             });
