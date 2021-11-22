@@ -29,7 +29,7 @@ export function createQuestionForm(objsToCreateQuestion, correctAnswerObj, quest
     const textToChange = questionObj.text.match(/(?<=<)\w{1,}(?=>)/g);
     if (textToChange) {
         textToChange.forEach(text => {
-            console.log(correctAnswerObj[text]);
+            // console.log(correctAnswerObj[text]);
             questionText = questionText.replace(`<${text}>`, correctAnswerObj[text]);
         });
     }

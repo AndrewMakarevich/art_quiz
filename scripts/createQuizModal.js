@@ -72,7 +72,6 @@ export function createQuizModal(category, categoryPicture, categoryNode) {
         categoryPicture.classList.remove('unvisited-category');
     }
     localStorage.setItem('categoryQuizStorage', JSON.stringify(categoryResStorage));
-    console.log(JSON.parse(localStorage.getItem('categoryQuizStorage')));
 
     updateCategoryStatus(category, categoryNode);
     generateQuestion('AndrewMakarevich', 'image-data', '.', 'master', 'images.json');

@@ -16,7 +16,7 @@ export async function createCorrectAnswerModal(correctAnswerObj, categoryName, a
     correctAnswerImg.alt = 'Correct answer image';
     const imgUrl = await getTinyArtsFromRepos('AndrewMakarevich', 'image-data', 'img', 'master', correctAnswerObj.imageNum);
     correctAnswerImg.src = imgUrl;
-    console.log(imgUrl);
+    // console.log(imgUrl);
 
     const resultBlock = document.createElement('article');
     resultBlock.classList.add('correct-answer-result');

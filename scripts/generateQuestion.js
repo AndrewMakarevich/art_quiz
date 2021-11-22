@@ -5,7 +5,6 @@ import { getRndNumber } from "./rndBackground.js";
 import ArtDataStore from '../store/artDataStore.js';
 import SectionStore from "../store/sectionStore.js";
 import { createQuestionForm } from "./createQuestionForm.js";
-import GlobalVariables from "../store/globalVariables.js";
 
 
 export async function generateQuestion(authorName, repName, path, branchName, fileName) {
@@ -40,7 +39,7 @@ export async function generateQuestion(authorName, repName, path, branchName, fi
         }
     }
     const questionType = sectionObj.questions[getRndNumber(0, sectionObj.questions.length - 1)];
-    console.log(questionType);
+    // console.log(questionType);
 
 
 
@@ -60,13 +59,13 @@ export async function generateQuestion(authorName, repName, path, branchName, fi
             objsToCreateQuestion = [...objsToCreateQuestion, artData[rndNum]];
         }
     }
-    console.log(objsToCreateQuestion);
+    // console.log(objsToCreateQuestion);
 
     // Выбор обьекта, который будет являться правильным ответом
 
     const correctAnswer = objsToCreateQuestion[getRndNumber(0, objsToCreateQuestion.length - 1)];
-    console.log(`Correct answer:`);
-    console.log(correctAnswer);
+    // console.log(`Correct answer:`);
+    // console.log(correctAnswer);
 
     createQuestionForm(objsToCreateQuestion, correctAnswer, questionType);
 

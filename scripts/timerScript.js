@@ -11,7 +11,6 @@ export function setTimer(correctAnswerObj, questionObj) {
             return clearInterval(timer);
         }
         if (timeLeft === 0) {
-            console.log('time left');
             clearInterval(timer);
             return checkAnswer(null, correctAnswerObj, questionObj);
         }
@@ -21,7 +20,6 @@ export function setTimer(correctAnswerObj, questionObj) {
         const minutes = `${Math.trunc(timeLeft / 60)}`.length === 1 ? `0${Math.trunc(timeLeft / 60)}` : `${Math.trunc(timeLeft / 60)}`;
         const seconds = `${timeLeft % 60}`.length === 1 ? `0${timeLeft % 60}` : `${timeLeft % 60}`;
         timerNode.querySelector('.time-left-block').innerText = `${minutes}:${seconds}`;
-        console.log(timeLeft);
     }, 1000);
 }
 function createTimer() {
@@ -43,7 +41,6 @@ function createTimer() {
 function timerTimeChange() {
     let settingsStorage = JSON.parse(localStorage.getItem('settings'));
     let timerSettings = settingsStorage['timer'];
-    console.log(settingsStorage);
     const decreaseBtn = document.querySelector('.time-game-timer .decrease-btn');
     const encreaseBtn = document.querySelector('.time-game-timer .encrease-btn');
     decreaseBtn.addEventListener('click', () => {
