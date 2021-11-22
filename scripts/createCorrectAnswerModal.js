@@ -20,7 +20,12 @@ export async function createCorrectAnswerModal(correctAnswerObj, categoryName, a
 
     const resultBlock = document.createElement('article');
     resultBlock.classList.add('correct-answer-result');
-    resultBlock.innerText = answerResult ? 'Correct answer' : 'Incorrect answer';
+    if (answerResult) {
+        resultBlock.classList.add('correct-answer');
+    } else {
+        resultBlock.classList.add('incorrect-answer');
+    }
+
 
     const correctAnswerName = document.createElement('h6');
     correctAnswerName.classList.add('correct-answer-name');
@@ -40,7 +45,8 @@ export async function createCorrectAnswerModal(correctAnswerObj, categoryName, a
         GlobalVariables.correctAnswerModalExistence = false;
     });
 
-    modalWindow.append(correctAnswerImg);
+
+    resultBlock.append(correctAnswerImg);
     modalWindow.append(resultBlock);
     modalWindow.append(correctAnswerName);
     modalWindow.append(correctAnswerAuthorYear);

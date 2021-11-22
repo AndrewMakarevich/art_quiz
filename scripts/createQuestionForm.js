@@ -4,6 +4,7 @@ import { checkAnswer } from './checkAnswer.js';
 import { updateCategoryStatus } from './updateCategoryStatus.js';
 import GlobalVariables from '../store/globalVariables.js';
 import { createFinalQuizPage } from './createFinalQuizPage.js';
+import { setTimer } from './timerScript.js';
 
 export function createQuestionForm(objsToCreateQuestion, correctAnswerObj, questionObj) {
 
@@ -33,6 +34,9 @@ export function createQuestionForm(objsToCreateQuestion, correctAnswerObj, quest
         });
     }
     question.innerText = questionText;
+
+    const timerBlock = document.createElement('section');
+    timerBlock.classList.add('timer-block');
 
     const imagesWrapper = document.createElement('section');
     imagesWrapper.classList.add('question-form-img-wrapper');
@@ -105,8 +109,14 @@ export function createQuestionForm(objsToCreateQuestion, correctAnswerObj, quest
     });
 
 
+
     const questionForm = document.querySelector('.question-form');
     questionForm.append(question);
+    questionForm.append(timerBlock);
     questionForm.append(imagesWrapper);
+
+    if (GlobalVariables.timerOptions.enabled) {
+        setTimer(correctAnswerObj, questionObj);
+    }
     return questionForm.append(answerOptionsWrapper);
 }

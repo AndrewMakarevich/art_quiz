@@ -2,6 +2,7 @@ import { createQuizModal } from './createQuizModal.js';
 import { token } from '../store/accessToken.js';
 import { updateCategoryStatus } from './updateCategoryStatus.js';
 import GlobalVariables from '../store/globalVariables.js';
+import { clickSound } from './audioScript.js';
 
 export { createQuizModal } from './createQuizModal.js';
 export async function createCategory(category, authorName, repName, path, branchName) {
@@ -37,6 +38,7 @@ export async function createCategory(category, authorName, repName, path, branch
     const categoryBtn = document.createElement('button');
     categoryBtn.classList.add('open-category-quiz-btn');
     categoryBtn.addEventListener('click', () => {
+        clickSound();
         createQuizModal(category, categoryPicture, categoryWrapper);
         GlobalVariables.currentCategoryNode = categoryWrapper;
     });

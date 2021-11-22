@@ -6,7 +6,7 @@ class CategoriesStore {
                     id: 0,
                     categoryName: "Portrait",
                     categoryPicture: 109,
-                    amountOfQuestions: 1
+                    amountOfQuestions: 10
                 },
                 {
                     id: 1,

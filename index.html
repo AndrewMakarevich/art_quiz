@@ -11,6 +11,7 @@
     <link rel='stylesheet' href="styles/categories.css">
     <link rel='stylesheet' href="styles/footer.css">
     <link rel='stylesheet' href="styles/quizModal.css">
+    <link rel='stylesheet' href="styles/timer.css">
 </head>
 
 <body>
@@ -24,6 +25,34 @@
                         fill="white" />
                 </svg>
             </button>
+            <article class="volume-article">
+                <h3>Volume</h3>
+                <input class="volume-input" type="range" step="0.01">
+            </article>
+            <article class="time-game-article">
+                <div class="time-game-toggle">
+                    <h3>Time game</h3>
+                    <label class="toggle-wrapper">
+                        <input class="toggle-input" type="checkbox">
+                        <span class="toggle"></span>
+                    </label>
+                </div>
+                <div class="time-game-timer">
+                    <h3>Time to answer</h3>
+                    <section class="time-to-answer">
+                        <button class="decrease-btn">
+                            -
+                        </button>
+                        <div class="current-time-block">
+
+                        </div>
+                        <button class="encrease-btn">
+                            +
+                        </button>
+                    </section>
+
+                </div>
+            </article>
         </section>
         <section class="nav-bar">
             <section class="nav-bar__logo-wrapper">
@@ -71,10 +100,14 @@
             </ul>
         </section>
     </footer>
+    <audio class="click-audio audio" src="assets/audio/click.mp3"></audio>
+    <audio class="lose-audio audio" src="assets/audio/lose.wav"></audio>
+    <audio class="victory-audio audio" src="assets/audio/victory.mp3"></audio>
     <script src="./index.js" type="module"></script>
     <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
     <script src='./scripts/rndBackground.js' type="module"></script>
     <script src='./scripts/openSettings.js'></script>
+    <script src='./scripts/timerScript.js' type="module"></script>
 </body>
 
 </html>

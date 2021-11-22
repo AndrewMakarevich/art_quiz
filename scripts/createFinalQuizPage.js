@@ -10,7 +10,6 @@ export function createFinalQuizPage(answersArray) {
     let currentCategoryNode = GlobalVariables.currentCategoryNode;
     let currentCategory = GlobalVariables.currentCategory;
     const correctAnswersArray = answersArray.filter(answer => answer === true);
-    const incorrectAnswersArray = answersArray.filter(answer => answer === false);
 
     const finalQuizPageWrapper = document.createElement('section');
     finalQuizPageWrapper.classList.add('final-quiz-page');

@@ -4,6 +4,7 @@ import { createQuizModal } from "./createQuizModal.js";
 
 export function moveToTheNextCategory() {
     document.querySelector('.category-quiz-wrapper').remove();
+    GlobalVariables.quizModalExistence = false;
     let currentCategoryNode = GlobalVariables.currentCategoryNode;
     if (!currentCategoryNode.nextSibling) {
         GlobalVariables.currentCategoryNode = currentCategoryNode.parentNode.childNodes[1];

@@ -131,6 +131,7 @@
     flex-direction: column;
     align-items:center;
     justify-content: center;
+    border-radius:25px;
 }
 .correct-answer-img{
     border-radius:25px;
@@ -138,15 +139,33 @@
     object-fit: cover;
 }
 .correct-answer-result{
-
+    position: relative;
+}
+.incorrect-answer::before{
+    position: absolute;
+    bottom:10px;
+    left: 10px;
+    content: url(../assets/svg/incorrect-answer-icon.svg);
+    width:35px;
+    height: 35px;
+}
+.correct-answer::before{
+    position: absolute;
+    bottom:10px;
+    left: 10px;
+    content: url(../assets/svg/correct-answer-icon.svg);
+    width:35px;
+    height: 35px;
 }
 .correct-answer-name{
     font-family: Gilroy;
     font-size: 20px;
+    padding: 10px 0;
 }
 .correct-answer-author-year{
     font-family: Gilroy;
     font-size: 15px;
+    padding: 15px 0;
 }
 .next-question-btn{
     border: 2px solid rgb(0, 0, 0);

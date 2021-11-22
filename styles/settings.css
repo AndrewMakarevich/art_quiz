@@ -30,6 +30,108 @@
     top:0;
     position: fixed;
 }
+
+.time-game-toggle,
+.time-game-timer,
+.volume-article{
+    padding: 45px 0;
+}
+.time-game-toggle h3,
+.time-game-timer h3,
+.volume-article h3{
+    font-family: Gilroy;
+    color: var(--main-font-color);
+    font-size: 30px;
+    padding: 25px 0;
+}
+.toggle-wrapper{
+    position: relative;
+    display: inline-block;
+    width: 48px;
+    height: 23px; 
+    margin-left: 33px;
+}
+.toggle-input{
+    visibility: hidden;
+    width: 0;
+    height: 0;
+    margin:0;
+    padding: 0;
+}
+.toggle{
+    position: absolute;
+    top:0;
+    display: flex;
+    align-items:center;
+    width: 100%;
+    height: 100%;
+    background-color: white;
+    border-radius: 25px;
+    cursor: pointer;
+    transition: background-color .3s;
+}
+.toggle::before{
+    position: absolute;
+    content: "";
+    height: 18px;
+    width: 18px;
+    border-radius: 50%;
+    background-color: black;
+    left:3px;
+    transition: .3s;
+}
+.toggle::after{
+    position: absolute;
+    left: -33px;
+    content: 'Off';
+    font-size: 20px;
+    color: var(--main-font-color);
+    font-family: Gilroy;
+}
+.toggle-input:checked + .toggle::after{
+    content: "On";
+}
+.toggle-input:checked + .toggle::before{
+    transform: translateX(24px);
+    background-color:rgb(255, 255, 255);
+    border: 1px solid black;
+    box-sizing:border-box;
+}
+.toggle-input:checked + .toggle{
+    background-color: var(--main-hover-color);
+}
+
+.time-to-answer{
+    display: flex;
+}
+
+.decrease-btn,
+.encrease-btn{
+    position:relative;
+    width: 36px;
+    height: 36px;
+    background-color:white;
+    border:none;
+    border-radius: 50%;
+    line-height: 36px;
+    font-size: 35px;
+    cursor: pointer;
+    transition: background-color .3s;
+}
+.decrease-btn{
+    line-height: 10px;
+}
+.decrease-btn:hover,
+.decrease-btn:focus,
+.encrease-btn:hover,
+.encrease-btn:focus{
+    background-color:var(--main-hover-color);
+}
+.current-time-block{
+    color: white;
+    font-size: 35px;
+    font-family: Gilroy;
+}
 /* 
 @keyframes openSettings {
     20%,50%,80%,to{

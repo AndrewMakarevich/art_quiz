@@ -7,12 +7,13 @@ export function createQuizModal(category, categoryPicture, categoryNode) {
 
     const main = document.querySelector('main');
 
-    if (document.querySelector('.category-quiz-wrapper')) {
+    if (GlobalVariables.quizModalExistence) {
         return;
     }
 
     // Сохранение текущей категории в глобальной переменной
     GlobalVariables.currentCategory = category;
+    GlobalVariables.quizModalExistence = true;
 
     const modalBackground = document.createElement('section');
     modalBackground.classList.add('category-quiz-wrapper');
@@ -33,6 +34,7 @@ export function createQuizModal(category, categoryPicture, categoryNode) {
     closeBtn.classList.add('close-quiz-btn');
     closeBtn.addEventListener('click', () => {
         modalBackground.remove();
+        GlobalVariables.quizModalExistence = false;
     });
 
     const currentCategoryHeader = document.createElement('h4');

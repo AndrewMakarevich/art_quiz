@@ -5,7 +5,6 @@ export function updateCategoryStatus(category, categoryNode) {
 
     category = category || GlobalVariables.currentCategory;
     categoryNode = categoryNode || GlobalVariables.currentCategoryNode;
-    console.log(category);
 
     let categoryResStorage = localStorage.getItem('categoryQuizStorage');
     if (!categoryResStorage) {
