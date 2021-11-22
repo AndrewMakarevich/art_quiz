@@ -13,9 +13,10 @@ function saveAudioSettings() {
     const audioSettings = settingsStorage['audio'];
     if (!audioSettings) {
         settingsStorage['audio'] = {
-            volume: 50
+            volume: 0.5
         };
         localStorage.setItem('settings', JSON.stringify(settingsStorage));
+        console.log(JSON.parse(localStorage.getItem('settings')));
     } else {
         GlobalVariables.audioOptions = audioSettings;
     }

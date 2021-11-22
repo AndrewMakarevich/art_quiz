@@ -11,7 +11,7 @@ export class GlobalVariables {
             minTime: 10
         };
         this._audioOptions = {
-            volume: 50
+            volume: 0.5
         };
     }
     get quizModalExistence() {
